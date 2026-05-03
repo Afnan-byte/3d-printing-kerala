@@ -1,11 +1,27 @@
-// Navigation Scroll Effect
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+// Sidebar Toggle
+const sidebar = document.getElementById('sidebar');
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const body = document.body;
+
+if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('closed');
+        sidebar.classList.toggle('active');
+        sidebarToggle.classList.toggle('active');
+        body.classList.toggle('sidebar-closed');
+    });
+}
+
+// Close sidebar when clicking a link (mobile)
+document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+            sidebar.classList.remove('active');
+            sidebar.classList.add('closed');
+            sidebarToggle.classList.remove('active');
+            body.classList.add('sidebar-closed');
+        }
+    });
 });
 
 // Reveal on Scroll Animation
@@ -24,25 +40,46 @@ const revealOnScroll = () => {
     });
 };
 
-// Initial check and event listener
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
+
+// Active Link Highlight on Scroll
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+        }
+    });
+});
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
         if (target) {
             window.scrollTo({
-                top: target.offsetTop - 80,
+                top: target.offsetTop - 20,
                 behavior: 'smooth'
             });
         }
     });
 });
 
-// Log for student understanding
-console.log("3D Printing Kerala Website Loaded!");
-console.log("Animations and Navigation are active.");
+console.log("3D Printing Kerala Website Loaded with Closable Sidebar!");
