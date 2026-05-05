@@ -541,12 +541,12 @@ tr:hover td {
 }
 
 .part-item {
-  padding: 0.75rem 1rem;
+  padding: 1.25rem 1.5rem;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid var(--glass-border);
   display: flex;
-  gap: 1.25rem;
+  gap: 1.75rem;
   align-items: center;
   transition: all 0.3s ease;
   height: 100%;
@@ -555,14 +555,14 @@ tr:hover td {
 .part-item:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: var(--secondary);
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
 .part-item img.part-img {
-  width: 60px !important;
-  height: 60px !important;
+  width: 120px !important;
+  height: 120px !important;
   margin-bottom: 0 !important;
-  border-radius: 8px;
+  border-radius: 12px;
   object-fit: cover;
   flex-shrink: 0;
   border: 1px solid var(--glass-border);
