@@ -740,3 +740,14 @@ footer {
     width: 85%;
   }
 }
+
+/* Filament section — show full images without cropping */
+#filaments .card img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  display: block;
+  background: rgba(0,0,0,0.15);
+}
